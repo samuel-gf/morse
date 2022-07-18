@@ -1,0 +1,82 @@
+#!/bin/bash
+
+F=880							# Frequency
+D1=0.05							# Length of dot is one unit
+D3=`echo $D1 \* 3 | bc`	# A dash is three units
+D7=`echo $D1 \* 7 | bc`	# Space between words is seven units
+
+
+function dot()
+# Placement of "-t alsa" is critical. So do not change the order of parameters
+{
+	play -nq -t alsa synth $D1 square $F
+	sleep $D1
+}
+
+function dash()
+# Placement of "-t alsa" is critical. So do not change the order of parameters
+{
+	play -nq -t alsa synth $D3 square $F
+	sleep $D1
+}
+
+function end_letter()
+{
+	sleep $D3
+}
+
+function end_word()
+{
+	sleep $D7
+}
+
+
+# https://www.geeksforgeeks.org/string-manipulation-in-shell-scripting/
+input=$1
+length=`echo -n $input | wc -m`
+
+for ((i=0; i<$length; i++)); do
+	c="${input:$i:1}"	# Just one character each time
+	c=${c,}				# To lower
+	case $c in
+		" ") end_word;;
+		"a") dot; dash;;
+		"b") dash; dot; dot; dot;;
+		"c") dash; dot; dash; dot;;
+		"d") dash; dot; dot;;
+		"e") dot;;
+		"f") dot; dot; dash; dot;;
+		"g") dash; dash; dot;;
+		"h") dot; dot; dot; dot;;
+		"i") dot; dot;;
+		"j") dot; dash; dash; dash;;
+		"k") dash; dot; dash;;
+		"l") dot; dash; dot; dot;;
+		"m") dash; dash;;
+		"n") dash; dot;;
+		"o") dash; dash; dash;;
+		"p") dot; dash; dash; dot;;
+		"q") dash; dash; dot; dash;;
+		"r") dot; dash; dot;;
+		"s") dot; dot; dot;;
+		"t") dash;;
+		"u") dot; dot; dash;;
+		"v") dot; dot; dot; dash;;
+		"w") dot; dash; dash;;
+		"x") dash; dot; dot; dash;;
+		"y") dash; dot; dash; dash;;
+		"z") dash; dash; dot; dot;;
+		"1") dot; dash; dash; dash; dash;;
+		"2") dot; dot; dash; dash; dash;;
+		"3") dot; dot; dot; dash; dash;;
+		"4") dot; dot; dot; dot; dash;;
+		"5") dot; dot; dot; dot; dot;;
+		"6") dash; dot; dot; dot; dot;;
+		"7") dash; dash; dot; dot; dot;;
+		"8") dash; dash; dash; dot; dot;;
+		"9") dash; dash; dash; dash; dot;;
+		"0") dash; dash; dash; dash; dash;;
+	esac
+	end_letter
+done
+
