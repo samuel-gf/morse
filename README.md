@@ -1,4 +1,4 @@
-# Morse code sound sound synthesizer from command line
+# Morse code sound synthesizer for command line
 
 This easy shell cript emits morse code sounds from command line
 
