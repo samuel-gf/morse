@@ -21,3 +21,11 @@ it in your systema. You can try:
 - Linux `sudo apt install sox`
 - MacOS `brew install sox`
 - Windows (I dont know, but if you find out it, please, email me)
+
+## Train game
+
+You can use the script `random_test` to train yourself
+
+## More resources
+
+- [Morse code world](https://morsecode.world)
