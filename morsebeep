@@ -85,7 +85,7 @@ for ((i=0; i<$length; i++)); do
 	c="${input:$i:1}"   # Just one character each time
 	c=${c,}             # To lower
 	case $c in
-		" ") end7;;		# End of word. Wait 7 units
+		" ") w7;;		# End of word. Wait 7 units
 		"a") dot; w1; dash;;
 		"b") dash; w1; dot; w1; dot; w1; dot;;
 		"c") dash; w1; dot; w1; dash; w1; dot;;

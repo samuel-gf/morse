@@ -23,7 +23,7 @@ while true; do
 		8) w=prague;;
 		9) w=riga;;
 	esac
-	morsebeep -t 0.1 -m $w
+	morsebeep -t 0.2 -m $w
 	read -p "$counter) " answer
 	if [ "${answer,,}" = "$w" ]; then
 		points=`echo $points + 1 | bc`
