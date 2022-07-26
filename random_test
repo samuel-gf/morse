@@ -3,26 +3,40 @@
 counter=1
 answer=""
 points=0
+dictionary=""
 
-echo "Train morse code game"
+
+function usage() # Help usage --help
+{
+	echo "Usage: $ $(basename $0) <parameters>"
+	echo
+	echo "       PARAMETERS"
+	echo "        -d dictionary_file (each line one word)"
+	echo "        --help             (this help)"
+	echo
+	echo "       EXAMPLES"
+	echo "        $ $(basename $0) -d words1.txt"
+}
+
+while [ ! -z $1 ]; do
+	case $1 in
+		"-d") shift; dictionary=$1;;
+
+		"-h" | "--help") usage; exit 0;;
+
+		*) usage; exit 1;;
+	esac
+	shift
+done
+
+echo "Train morse code game with dictionary file $dictionary"
 echo "Answer end to finish"
 echo 
 echo "Let's go. What name are you listening to..."
 while true; do
-	n=$(rand -M 10 -s $(date +%s))	# From 0 to (M-1)
-	w=""
-	case $n in
-		0) w=paris;;
-		1) w=roma;;
-		2) w=moscu;;
-		3) w=tirana;;
-		4) w=yerevan;;
-		5) w=baku;;
-		6) w=sofia;;
-		7) w=nicosia;;
-		8) w=prague;;
-		9) w=riga;;
-	esac
+	max=$(wc -l $dictionary | cut -f1 -d" ")					# Number of lines in dictionary
+	n=`echo $(rand -M $max -s $(date +%s)) + 1 | bc`     		# From 0 to (M-1)
+	w=$(cat $dictionary | sed -n "$n p")
 	morsebeep -t 0.2 -m $w
 	read -p "$counter) " answer
 	if [ "${answer,,}" = "$w" ]; then

@@ -108,7 +108,7 @@ for ((i=0; i<$length; i++)); do
 		"t") dash;;
 		"u") dot; w1; dot; w1; dash;;
 		"v") dot; w1; dot; w1; dot; w1; dash;;
-		"w1;") dot; w1; dash; w1; dash;;
+		"w") dot; w1; dash; w1; dash;;
 		"x") dash; w1; dot; w1; dot; w1; dash;;
 		"y") dash; w1; dot; w1; dash; w1; dash;;
 		"z") dash; w1; dash; w1; dot; w1; dot;;
