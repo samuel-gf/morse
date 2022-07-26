@@ -39,7 +39,7 @@ while true; do
 	w=$(cat $dictionary | sed -n "$n p")
 	morsebeep -t 0.2 -m $w
 	read -p "$counter) " answer
-	if [ "${answer,,}" = "$w" ]; then
+	if [ "${answer,,}" = "${w,,}" ]; then
 		points=`echo $points + 1 | bc`
 		echo "Right. Points $points"
 	else
