@@ -86,27 +86,27 @@ for ((i=0; i<$length; i++)); do
 	c=${c,}             # To lower
 	case $c in
 		" ") w7;;		# End of word. Wait 7 units
-		"a") dot; w1; dash;;
+		"a" | "á") dot; w1; dash;;
 		"b") dash; w1; dot; w1; dot; w1; dot;;
 		"c") dash; w1; dot; w1; dash; w1; dot;;
 		"d") dash; w1; dot; w1; dot;;
-		"e") dot;;
+		"e" | "é") dot;;
 		"f") dot; w1; dot; w1; dash; w1; dot;;
 		"g") dash; w1; dash; w1 dot;;
 		"h") dot; w1; dot; w1; dot; w1; dot;;
-		"i") dot; w1; dot;;
+		"i" | "í") dot; w1; dot;;
 		"j") dot; w1; dash; w1; dash; w1; dash;;
 		"k") dash; w1; dot; w1; dash;;
 		"l") dot; w1; dash; w1; dot; w1; dot;;
 		"m") dash; w1; dash;;
 		"n") dash; w1; dot;;
-		"o") dash; w1; dash; w1; dash;;
+		"o" | "ó") dash; w1; dash; w1; dash;;
 		"p") dot; w1; dash; w1; dash; w1; dot;;
 		"q") dash; w1; dash; w1; dot; w1; dash;;
 		"r") dot; w1; dash; w1; dot;;
 		"s") dot; w1; dot; w1; dot;;
 		"t") dash;;
-		"u") dot; w1; dot; w1; dash;;
+		"u" | "ú") dot; w1; dot; w1; dash;;
 		"v") dot; w1; dot; w1; dot; w1; dash;;
 		"w") dot; w1; dash; w1; dash;;
 		"x") dash; w1; dot; w1; dot; w1; dash;;
