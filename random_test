@@ -4,6 +4,8 @@ counter=1
 answer=""
 points=0
 dictionary=""
+time=0.05
+percernt=0
 
 
 function usage() # Help usage --help
@@ -12,6 +14,7 @@ function usage() # Help usage --help
 	echo
 	echo "       PARAMETERS"
 	echo "        -d dictionary_file (each line one word)"
+	echo "        -t length of dot (default $time seconds)"
 	echo "        --help             (this help)"
 	echo
 	echo "       EXAMPLES"
@@ -21,6 +24,7 @@ function usage() # Help usage --help
 while [ ! -z $1 ]; do
 	case $1 in
 		"-d") shift; dictionary=$1;;
+		"-t") shift; time=$1;;
 
 		"-h" | "--help") usage; exit 0;;
 
@@ -30,25 +34,27 @@ while [ ! -z $1 ]; do
 done
 
 echo "Train morse code game with dictionary file $dictionary"
-echo "Answer end to finish"
+echo "Answer «end» to finish"
 echo 
-echo "Let's go. What name are you listening to..."
+echo "Let's go. What are you listening to..."
 while true; do
 	max=$(wc -l $dictionary | cut -f1 -d" ")					# Number of lines in dictionary
 	n=`echo $(rand -M $max -s $(date +%s)) + 1 | bc`     		# From 0 to (M-1)
 	w=$(cat $dictionary | sed -n "$n p")
-	morsebeep -t 0.2 -m $w
+	morsebeep -t $time -m $w
 	read -p "$counter) " answer
+	percent=`echo $points \* 100 / $counter | bc`
 	if [ "${answer,,}" = "${w,,}" ]; then
 		points=`echo $points + 1 | bc`
-		echo "Right. Points $points"
+		percent=`echo $points \* 100 / $counter | bc`
+		echo "Right. Points $points $percent%"
 	else
 		if [ "${answer,,}" = "end" ]; then
 			echo
 			echo "Total score $points"
 			exit 0
 		else
-			echo "ERROR. The answer is $w"
+			echo "ERROR. The answer is $w $percent%"
 		fi
 	fi
 	counter=`echo $counter + 1 | bc`

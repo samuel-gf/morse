@@ -1,6 +1,6 @@
 # Morse code sound synthesizer for command line
 
-This easy shell cript emits morse code sounds from command line
+This easy shell script emits morse code sounds from command line.
 
 ## Usage
 

@@ -3,6 +3,7 @@
 # Default parameters
 F=880                   # Frequency
 D1=0.05                 # Length of dot is one unit
+S=false
 
 # FUNCTIONS -----------------------------------------------------------------
 
@@ -10,27 +11,32 @@ D1=0.05                 # Length of dot is one unit
 function dot()
 {
     play -nq -t alsa synth $D1 square $F
+	if [ "$S" = "true" ]; then printf "."; fi
 }
 
 function dash()
 # Placement of "-t alsa" is critical. So do not change the order of parameters
 {
     play -nq -t alsa synth $D3 square $F
+	if [ "$S" = "true" ]; then printf "-"; fi
 }
 
 function w1() # Wait 1 unit
 {
 	sleep $D1
+	if [ "$S" = "true" ]; then printf " "; fi
 }
 
 function w3() # Wait 3 units
 {
     sleep $D3
+	if [ "$S" = "true" ]; then printf "   "; fi
 }
 
 function w7() # Wait 7 units
 {
     sleep $D7
+	if [ "$S" = "true" ]; then printf "\n"; fi
 }
 
 function usage() # Help usage --help
@@ -38,9 +44,10 @@ function usage() # Help usage --help
 	echo "Usage: $ $(basename $0) <parameters>"
 	echo
 	echo "       PARAMETERS"
+	echo "        -f <frequency> tone of sound (default 880)"
 	echo "        -m <message>"
-	echo "        -f <frequency> (tone of sound, default 880)"
-	echo "        -t <time>      (length of dot, default 0.05)"
+	echo "        -t <time>      length of dot (default 0.05)"
+	echo "        -s true|false  show dashes and dots (default false)"
 	echo "        --help         (this help)"
 	echo
 	echo "       EXAMPLES"
@@ -59,10 +66,14 @@ while [ ! -z $1 ]; do
 		# Message
 		"-m") shift; input=$1;;
 
+		# Help
+		"-h" | "--help") usage; exit 0;;
+
 		# Time
 		"-t") shift; D1=$1;;
 
-		"-h" | "--help") usage; exit 0;;
+		# Show dashes and dots
+		"-s") shift; S=$1;;
 
 		*) usage; exit 1;;
 	esac
@@ -92,7 +103,7 @@ for ((i=0; i<$length; i++)); do
 		"d") dash; w1; dot; w1; dot;;
 		"e" | "é") dot;;
 		"f") dot; w1; dot; w1; dash; w1; dot;;
-		"g") dash; w1; dash; w1 dot;;
+		"g") dash; w1; dash; w1; dot;;
 		"h") dot; w1; dot; w1; dot; w1; dot;;
 		"i" | "í") dot; w1; dot;;
 		"j") dot; w1; dash; w1; dash; w1; dash;;
