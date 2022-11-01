@@ -50,15 +50,16 @@ function usage() # Help usage --help
 	echo
 	echo "       PARAMETERS"
 	echo "        -f <frequency> tone of sound (default 880)"
-	echo "        -m <message>"
+	echo "        -m <message>   message to transform into morse. It can be read from stdin"
 	echo "        -t <time>      length of dot (default 0.05)"
-	echo "        -s true|false  show dashes and dots (default false)"
+	echo "        -s             show dashes and dots (default false)"
 	echo "        --help         (this help)"
 	echo
 	echo "       EXAMPLES"
 	echo "        $ $(basename $0) -m sos -f 900"
 	echo "        $ $(basename $0) -m \"Hello world\""
 	echo "        $ $(basename $0) -m \"Hello world\" -t 0.1 -f 1000"
+	echo "        $ cat news1.txt | $(basename $0) "
 }
 
 
@@ -78,7 +79,7 @@ while [ ! -z $1 ]; do
 		"-t") shift; D1=$1;;
 
 		# Show dashes and dots
-		"-s") shift; S=$1;;
+		"-s") shift; S=true;;
 
 		*) usage; exit 1;;
 	esac
