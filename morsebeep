@@ -3,7 +3,12 @@
 # Default parameters
 F=880                   # Frequency
 D1=0.05                 # Length of dot is one unit
-S=false
+S=false					# Show dots and dash in screen
+INPUT=""
+if [ -p /dev/stdin ]; then
+	INPUT=$(cat /dev/stdin)
+fi
+
 
 # FUNCTIONS -----------------------------------------------------------------
 
@@ -24,7 +29,7 @@ function dash()
 function w1() # Wait 1 unit
 {
 	sleep $D1
-	if [ "$S" = "true" ]; then printf " "; fi
+	if [ "$S" = "true" ]; then printf ""; fi
 }
 
 function w3() # Wait 3 units
@@ -64,7 +69,7 @@ while [ ! -z $1 ]; do
 		"-f") shift; F=$1;;
 
 		# Message
-		"-m") shift; input=$1;;
+		"-m") shift; INPUT=$1;;
 
 		# Help
 		"-h" | "--help") usage; exit 0;;
@@ -88,12 +93,11 @@ D3=`echo $D1 \* 3 | bc` # A dash is three units
 D7=`echo $D1 \* 7 | bc` # Space between words is seven units
 
 
+LENGTH=`echo -n $INPUT | wc -m`		# Length of input string
 
 
-length=`echo -n $input | wc -m`		# Length of input string
-
-for ((i=0; i<$length; i++)); do
-	c="${input:$i:1}"   # Just one character each time
+for ((i=0; i<$LENGTH; i++)); do
+	c="${INPUT:$i:1}"   # Just one character each time
 	c=${c,}             # To lower
 	case $c in
 		" ") w7;;		# End of word. Wait 7 units

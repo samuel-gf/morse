@@ -33,6 +33,8 @@ while [ ! -z $1 ]; do
 	shift
 done
 
+if [ "$dictionary" = "" ]; then echo "ERROR: No dictionary selected"; usage; exit 1; fi
+
 echo "Train morse code game with dictionary file $dictionary"
 echo "Answer «end» to finish"
 echo 
@@ -41,7 +43,7 @@ while true; do
 	max=$(wc -l $dictionary | cut -f1 -d" ")					# Number of lines in dictionary
 	n=`echo $(rand -M $max -s $(date +%s)) + 1 | bc`     		# From 0 to (M-1)
 	w=$(cat $dictionary | sed -n "$n p")
-	morsebeep -t $time -m $w
+	morsebeep -t $time -m $w 
 	read -p "$counter) " answer
 	percent=`echo $points \* 100 / $counter | bc`
 	if [ "${answer,,}" = "${w,,}" ]; then
