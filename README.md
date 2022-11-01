@@ -3,7 +3,7 @@
 Here you have two shell scripts:
 
 1. *Morsebeep* emits morse code sounds from command line.
-2. *Random_test* is a script to train morse code every day.
+2. *Morsetraining* is a script to train morse code every day.
 
 ## Morsebeep script
 
@@ -31,7 +31,7 @@ it in your systema. You can try:
 
 
 
-## Random_test script
+## Morsetraining script
 
 You can use the script `random_test` to train yourself
 
@@ -45,7 +45,7 @@ You can use the script `random_test` to train yourself
 
 ### Examples
 ```
-$ random_test -d letters.txt
+$ morsetraining -d letters.txt
 ```
 
 ## More resources
