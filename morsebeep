@@ -79,7 +79,7 @@ while [ ! -z $1 ]; do
 		"-t") shift; D1=$1;;
 
 		# Show dashes and dots
-		"-s") shift; S=true;;
+		"-s") S=true;;
 
 		*) usage; exit 1;;
 	esac
@@ -101,7 +101,7 @@ for ((i=0; i<$LENGTH; i++)); do
 	c="${INPUT:$i:1}"   # Just one character each time
 	c=${c,}             # To lower
 	case $c in
-		" ") w7;;		# End of word. Wait 7 units
+		" ") w7; continue;;				# End of word. Wait 7 units
 		"a" | "á") dot; w1; dash;;
 		"b") dash; w1; dot; w1; dot; w1; dot;;
 		"c") dash; w1; dot; w1; dash; w1; dot;;
@@ -141,4 +141,5 @@ for ((i=0; i<$LENGTH; i++)); do
 	esac
 	w3	# End of letter. Wait 3 units. Gap between dots and dashes
 done
+echo
 exit 0
