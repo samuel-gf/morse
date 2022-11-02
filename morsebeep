@@ -15,33 +15,33 @@ fi
 # Placement of "-t alsa" is critical. So do not change the order of parameters
 function dot()
 {
-    play -nq -t alsa synth $D1 square $F
 	if [ "$S" = "true" ]; then printf "."; fi
+    play -nq -t alsa synth $D1 square $F
 }
 
 function dash()
 # Placement of "-t alsa" is critical. So do not change the order of parameters
 {
-    play -nq -t alsa synth $D3 square $F
 	if [ "$S" = "true" ]; then printf "-"; fi
+    play -nq -t alsa synth $D3 square $F
 }
 
 function w1() # Wait 1 unit
 {
-	sleep $D1
 	if [ "$S" = "true" ]; then printf ""; fi
+	sleep $D1
 }
 
 function w3() # Wait 3 units
 {
-    sleep $D3
 	if [ "$S" = "true" ]; then printf "   "; fi
+    sleep $D3
 }
 
 function w7() # Wait 7 units
 {
-    sleep $D7
 	if [ "$S" = "true" ]; then printf "\n"; fi
+    sleep $D7
 }
 
 function usage() # Help usage --help
