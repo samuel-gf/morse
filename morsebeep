@@ -116,6 +116,7 @@ for ((i=0; i<$LENGTH; i++)); do
 		"l") dot; w1; dash; w1; dot; w1; dot;;
 		"m") dash; w1; dash;;
 		"n") dash; w1; dot;;
+		"ñ") dash; w1; dash; w1; dot; w1; dash; w1; dash;;
 		"o" | "ó") dash; w1; dash; w1; dash;;
 		"p") dot; w1; dash; w1; dash; w1; dot;;
 		"q") dash; w1; dash; w1; dot; w1; dash;;
